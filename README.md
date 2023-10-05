@@ -4,7 +4,7 @@ Blockchain technology has been one of the most transformative forces in recent y
 
 In this series of challenges, we will walk you through the foundational elements of a blockchain:
 
-1. **Introduction to Hashing with `crypto-js`**: [[bc01_hashing]] The first challenge introduces you to the concept of cryptographic hashing, a fundamental building block in the world of blockchain. Hashing functions enable us to maintain data integrity and are a cornerstone in the construction of blockchains.
+1. **Introduction to Hashing with `crypto-js`**: [[bc01_hashing]] The first challenge introduces you to the concept of cryptographic hashing, a fundamental building  block  in the world of blockchain. Hashing functions enable us to maintain data integrity and are a cornerstone in the construction of blockchains.
   
 2. **Creating a Basic Block Structure**: Building upon your knowledge of hashing, the second challenge directs you toward creating a single block. You'll learn how blocks contain data and how they are chained together to ensure integrity.
 

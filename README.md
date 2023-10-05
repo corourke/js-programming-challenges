@@ -12,4 +12,24 @@ In this series of challenges, we will walk you through the foundational elements
 
 The primary objective of these challenges is to give you some JavaScript coding practice, while introducing you to blockchain concepts. 
 
+#### Prerequisites
+
+I assume that you have been through a basic course on JavaScript fundamentals. Such as: 
+- [Codecademy Learn Javascript](https://www.codecademy.com/learn/introduction-to-javascript)
+    - implement JavaScript data types, built-in methods, and variables
+    - use conditionals to control the flow of a program in JavaScript
+    - construct functions and pass data through them
+    - identify global and block-level scopes in JavaScript
+    - use arrays to store lists of data
+    - use loops to execute blocks of code multiple times
+    - use iterator methods to simplify the process of looping over arrays
+    - use JavaScript ES6 object syntax to model real-world items
+- [Codecademy Learn Node.js](https://www.codecademy.com/learn/learn-node-js
+    - What Node.js is and how it can be used for back-end programming
+    - How to use built-in Node.js modules to create event-driven web applications
+    - How to set up Node.js locally
+    - How to implement modules in Node.js
+    - How to create an HTTP server using the built-in http module
+
 Are you ready to jump in? Let's begin with the first challenge!
+

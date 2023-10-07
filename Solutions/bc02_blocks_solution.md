@@ -15,27 +15,32 @@ npm install --save-dev jest
 
 Create a new file named `block.js`. In this file, create a JavaScript class named `Block` that takes an `index`, `timestamp`, `data`, and `previousHash` as arguments and initializes them using a constructor. Import the `crypto-js` library at the top.
 
+For `calculateHash`, you can import the hashing function (`generateHash`) you created in the previous challenge.
+
 ```javascript
-const SHA256 = require('crypto-js/sha256');
+const generateHash = require('./hashing')
 
 class Block {
-  constructor(index, timestamp, data, previousHash) {
-    this.index = index;
-    this.timestamp = timestamp;
-    this.data = data;
-    this.previousHash = previousHash;
-    this.hash = this.calculateHash();
+  constructor({ index, timestamp, data, previousHash }) {
+    ;(this.index = index),
+      (this.timestamp = timestamp),
+      (this.data = data),
+      (this.previousHash = previousHash),
+      (this.hash = this.calculateHash())
   }
 
   calculateHash() {
-    return SHA256(this.index + this.timestamp + JSON.stringify(this.data) + this.previousHash).toString();
+    return generateHash(
+      this.index +
+        this.timestamp +
+        (typeof this.data == 'string' ? this.data : JSON.stringify(this.data)) + // if !type string
+        this.previousHash
+    )
   }
 }
 
-module.exports = Block;
+module.exports = Block
 ```
-
-For `calculateHash`, you can import the hashing function (`generateHash`) you created in the previous challenge.
 
 #### Step 3: Writing Jest Tests
 

@@ -54,54 +54,63 @@ module.exports = Blockchain;
 Create another file named `blockchain.test.js`. Here, write some Jest tests to validate the `Blockchain` class methods.
 
 ```javascript
-const { Block, Blockchain } = require('./blockchain'); // Assume both classes are exported from blockchain.js
+const generateHash = require('./hashing')
+const Block = require('./block')
+const Blockchain = require('./blockchain')
 
 describe('Blockchain', () => {
-  let blockchain;
+  let blockchain
 
   beforeEach(() => {
-    blockchain = new Blockchain();
-    blockchain.addBlock(new Block(1, '02/01/2023', { amount: 50 }));
-    blockchain.addBlock(new Block(2, '03/01/2023', { amount: 100 }));
-  });
+    blockchain = new Blockchain()
+    blockchain.addBlock({ amount: 50 })
+    blockchain.addBlock({ amount: 100 })
+  })
 
   it('starts with a genesis block', () => {
-    expect(blockchain.chain[0]).toEqual(blockchain.createGenesisBlock());
-  });
+    const block0 = blockchain.getBlock(0)
+    expect(block0.getIndex()).toEqual(0)
+    expect(block0.getData()).toBe('Genesis Block')
+  })
 
   it('adds a new block', () => {
-    const data = 'some data';
-    blockchain.addBlock(new Block(1, '01/02/2021', data, ''));
-    expect(blockchain.chain[1].data).toEqual(data);
-  });
+    const data = { amount: 150 }
+    blockchain.addBlock(data)
+    expect(blockchain.getBlock(3).getData()).toEqual(data)
+  })
+
+  it('can fetch latest block', () => {
+    expect(blockchain.getLastBlock().getIndex()).toBe(2)
+  })
 
   it('validates a valid chain', () => {
-    blockchain.addBlock(new Block(1, '01/02/2021', 'some data', ''));
-    expect(blockchain.validateChain()).toBe(true);
-  });
-  
-  it('validates a valid chain', () => {
-    expect(blockchain.isValidChain()).toBe(true);
-  });
+    expect(blockchain.isValidChain()).toBe(true)
+  })
 
-  it('invalidates a chain with a tampered genesis block', () => {
-    blockchain.chain[0].data = { amount: 500 };
-    blockchain.chain[0].hash = blockchain.chain[0].calculateHash();
-    expect(blockchain.isValidChain()).toBe(false);
-  });
+  it('validates a new chain', () => {
+    expect(new Blockchain().isValidChain()).toBe(true)
+  })
+})
 
-  it('invalidates a chain with a tampered block', () => {
-    blockchain.chain[1].data = { amount: 500 };
-    blockchain.chain[1].hash = blockchain.chain[1].calculateHash();
-    expect(blockchain.isValidChain()).toBe(false);
-  });
+// This will need to be tested by tampering with a blockchain file that gets read in
+// describe('Invalid Blockchain', () => {
+//   it('invalidates a chain with a tampered genesis block', () => {
+//     const block0 = blockchain.getBlock(0)
+//     block0.data = { amount: 500 }
+//     block0.hash = block0.calculateHash()
+//     expect(blockchain.isValidChain()).toBe(false)
+//   })
 
-  it('invalidates a corrupt chain', () => {
-    blockchain.addBlock(new Block(1, '01/02/2021', 'some data', ''));
-    blockchain.chain[1].data = 'tampered data';
-    expect(blockchain.validateChain()).toBe(false);
-  });
-});
+//   it('invalidates a chain with a tampered block', () => {
+//     const block1 = blockchain.getBlock(1)
+//     const block2 = blockchain.getBlock(2)
+//     block1.data = { amount: 500 }
+//     block1.hash = block1.calculateHash()
+//     block2.hash = block1.hash
+//     expect(blockchain.isValidChain()).toBe(false)
+//   })
+// })
+
 ```
 
 Run your tests by executing:

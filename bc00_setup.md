@@ -7,17 +7,19 @@ This doc will guide you through setting up your JavaScript development environme
 Homebrew is a package manager for macOS that allows you to easily install software and packages.
 
 To install Homebrew, open your Terminal and run the following command:
-
 ```bash
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 ```
 
 After installation, update Homebrew's list of formulae and packages:
-
 ```bash
 brew update
 ```
 
+To see everything that has been installed with Homebrew, use: 
+```sh
+brew list
+```
 #### Step 2: Install Node and npm
 
 Node.js is a runtime that lets you execute JavaScript code server-side. npm (Node Package Manager) comes bundled with Node.js and allows you to install various packages.
